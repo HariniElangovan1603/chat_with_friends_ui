@@ -13,7 +13,7 @@ export default function SignIn(){
     async function handleSubmit(e) {
         e.preventDefault();
         // console.log(data);
-        let res = await axios.post("http://localhost:3005/users/signin", data)
+        let res = await axios.post("https://chat-with-friends-mocha.vercel.app/users/signin", data)
         // console.log(res)
         console.log(res.data)
         if( res.status === 200){

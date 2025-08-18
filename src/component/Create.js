@@ -13,7 +13,7 @@ export default function Create() {
     async function handleSubmit(e) {
         e.preventDefault();
         console.log(data);
-        let res = await axios.post("http://localhost:3005/users", data)
+        let res = await axios.post("https://chat-with-friends-mocha.vercel.app/users", data)
         console.log(res.data)
         route("/list")
 

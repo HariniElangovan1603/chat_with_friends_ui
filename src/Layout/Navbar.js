@@ -32,7 +32,7 @@ export default function Navbar() {
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                <a class="nav-link" href="http://localhost:3000/">Home</a>
+                <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">Link</a>
@@ -41,7 +41,7 @@ export default function Navbar() {
                 <a class="nav-link" href="javascript:void(0)">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="http://localhost:3000/list">Users</a>
+                <a class="nav-link" href="/list">Users</a>
               </li>
 
             </ul>

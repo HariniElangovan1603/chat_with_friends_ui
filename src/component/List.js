@@ -6,7 +6,7 @@ export default function List() {
     let route = useNavigate()
 
     async function getcollege() {
-        let res = await axios.get('http://localhost:3005/users')
+        let res = await axios.get('https://chat-with-friends-mocha.vercel.app/users')
         setcollege(res.data)
         console.log(res.data)
     }
@@ -18,7 +18,7 @@ export default function List() {
     }, [])
 
     async function handleDelete(id) {
-        let res = await axios.delete(`http://localhost:3005/users/${id}`)
+        let res = await axios.delete(`https://chat-with-friends-mocha.vercel.app/users/${id}`)
       console.log(res.data)
         getcollege();
 

@@ -14,7 +14,7 @@ export default function Update() {
         console.log(edit);
         let id = localStorage.getItem("id")
         delete edit._id;
-        let res = await axios.put(`http://localhost:3005/users/${id}`, edit)
+        let res = await axios.put(`https://chat-with-friends-mocha.vercel.app/users/${id}`, edit)
         console.log(res.data)
         route("/list")
 
@@ -24,7 +24,7 @@ export default function Update() {
         const id = localStorage.getItem("id")
         console.log(id)
         async function getcollege() {
-            let res = await axios.get(`http://localhost:3005/users/${id}`)
+            let res = await axios.get(`https://chat-with-friends-mocha.vercel.app/users/${id}`)
             console.log(res.data)
             setedit(res.data)
         }
