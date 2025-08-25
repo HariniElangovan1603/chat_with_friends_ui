@@ -6,7 +6,7 @@ const Card = ({ post, onDelete, onUpdate }) => {
         <div className="card">
             <div className="card-header">
                 <img src="https://via.placeholder.com/40" alt="User" />
-                <strong>{post.userid.name}</strong>
+                <strong>{post.userid}</strong>
             </div>
             <div className="card-body">
                 <p className="card-text">{post.content}</p>
