@@ -8,6 +8,8 @@ export default function Post() {
     const [user, setuser] = useState([]);
     let route = useNavigate();
 
+
+
     async function getuser() {
         try {
             let res = await axios.get(`${apiUrl}/users`, user);
@@ -18,21 +20,38 @@ export default function Post() {
     }
 
     function handleChange(e) {
+
         setdata({ ...data, [e.target.id]: e.target.value });
     }
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        console.log(data);
-        try {
-            const res = await axios.post(`${apiUrl}/post`, data);
-            console.log("hi", res);
-            console.log(res.data);
-            route("/show");
-        } catch (error) {
-            console.error("Error creating post:", error);
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    // Add current timestamp
+    const postData = { ...data, time: new Date().toISOString() };
+
+    console.log("Submitting post:", postData);
+
+    try {
+        // Send POST request
+        const res = await axios.post(`${apiUrl}/post`, postData);
+
+        // Log response
+        console.log("Post created:", res.data);
+
+        // If successful, store user data in localStorage
+        // Make sure your backend sends { user: {...} } in response
+        if (res.status === 200 && res.data.user) {
+            localStorage.setItem("user", JSON.stringify(res.data.user));
         }
+
+        // Navigate to show page
+        route("/show");
+
+    } catch (error) {
+        console.error("Error creating post:", error);
     }
+}
 
     useEffect(() => {
         getuser();
@@ -45,29 +64,36 @@ export default function Post() {
                 <h2>Create a New Post.</h2>
                 <form onSubmit={handleSubmit}>
 
-                    <div className="mt-3">
-                        <label htmlFor="userid" className="form-label">Userid</label>
-                        <select id="userid" className="form-control" onChange={handleChange}>
-                            {user.map((val) =>
-                                <option value={val._id}>{val.name}</option>)}
-                        </select>
-                    </div>
-                    <div className="mt-3">
-                        <input type="radio" id="uploadtype" className="mx-2" name="uploadtype" value="image" onChange={handleChange}  />
-                        <label htmlFor="image">IMAGE</label>
-
-                        <input type="radio" className="mx-2" id="uploadtype" name="uploadtype" value="video" onChange={handleChange}   />
-                        <label htmlFor="video">VIDEO</label>
-                        
                    
-                    <input type="text" className="form-control mt-2" id="upload" onChange={handleChange} value={data.upload} />
+                <div className="mt-3">
+                    <label htmlFor="userid" className="form-label">Userid</label>
+                    <select id="userid" className="form-control" onChange={handleChange} value={data.userid || ""}>
+                        <option value="">Select a user</option>
+                        {user.map((val) =>
+                            <option key={val._id} value={val._id}>{val.name}</option>)}
+                    </select>
+                </div>
                     
-                    </div>
+                <div className="mt-3">
+                    <input type="radio" id="uploadtype" className="mx-2" name="uploadtype" value="image"
+                        onChange={handleChange} checked={data.uploadtype === "image"} />
+                    <label htmlFor="image">IMAGE</label>
 
-                    <div className="mt-3">
-                        <label htmlFor="content" className="form-label"> Content</label>
-                        <input type="text" className="form-control" id="content" placeholder="Write here..." onChange={handleChange} value={data.content} /></div>
-                    <button className="btn btn-primary mt-3">Post</button>
+                    <input type="radio" className="mx-2" id="uploadtype" name="uploadtype" value="video"
+                        onChange={handleChange} checked={data.uploadtype === "video"} />
+                    <label htmlFor="video">VIDEO</label>
+
+                    <input type="text" className="form-control mt-2" id="upload"
+                        onChange={handleChange} value={data.upload || ""} placeholder="Enter image/video URL" />
+                </div>
+
+                <div className="mt-3">
+                    <label htmlFor="content" className="form-label">Content</label>
+                    <input type="text" className="form-control" id="content" placeholder="Write here..."
+                        onChange={handleChange} value={data.content || ""} />
+                </div>
+
+                <button className="btn btn-primary mt-3">Post</button>
                 </form>
             </div>
         </>

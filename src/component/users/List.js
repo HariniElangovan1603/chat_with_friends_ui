@@ -55,7 +55,7 @@ export default function List() {
                     </thead>
                     <tbody>
                         {college.map((val) =>
-                            <tr key={val._id}>
+                            <tr key={val.name}>
                                 <td> <p>{val.name}</p></td>
                                 <td><p>{val.phone}</p></td>
                                 <td><p>{val.email}</p></td>

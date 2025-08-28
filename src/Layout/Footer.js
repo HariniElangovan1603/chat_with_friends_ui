@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-dark text-light py-5 mt-auto">
       <div className="container text-center">
         <h5 className="mb-2">Follow Us</h5>
-        <div className="d-flex justify-content-center gap-4 ">
+        <div className="d-flex justify-content-center gap-4 mb-3 mt-2">
           <a href="https://facebook.com" className="text-light" target="_blank" rel="noopener noreferrer">
             <FaFacebook size={32} />
           </a>

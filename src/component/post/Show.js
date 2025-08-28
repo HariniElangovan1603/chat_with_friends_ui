@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 import apiUrl from "../../apiConfig";
 import Card from "./Card";
 
+
 export default function Show() {
     let [posts, setPosts] = useState([]);
     const route = useNavigate();
-
+   
     async function getPosts() {
+        
         try {
-            let res = await axios.get(`${apiUrl}/posts`);
-            setPosts(res.data);
+            let res = await axios.get(`${apiUrl}/post`);
+           setPosts(res.data);
         } catch (error) {
             console.error("Error fetching posts:", error);
         }
@@ -19,7 +21,7 @@ export default function Show() {
 
     async function handleDelete(postid) {
         try {
-            await axios.delete(`${apiUrl}/posts/${postid}`);
+            await axios.delete(`${apiUrl}/post/${postid}`);
             getPosts();
         } catch (error) {
             console.error("Error deleting post:", error);
