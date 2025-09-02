@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import apiUrl from "../apiConfig";
 export default function SignIn(){
      let [data, setdata] = useState([]);
     let route = useNavigate()
@@ -12,12 +13,10 @@ export default function SignIn(){
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // console.log(data);
-        let res = await axios.post("https://chat-with-friends-mocha.vercel.app/users/signin", data)
-        // console.log(res)
+       let res = await axios.post(`${apiUrl}/users/signin`, data)
         console.log(res.data)
         if( res.status === 200){
-            console.log("hi")
+            // console.log("hi")
             localStorage.setItem("user",JSON.stringify(res.data.user))
             route("/list")
         }
@@ -37,7 +36,8 @@ export default function SignIn(){
                         <label htmlFor="passwrd" className="form-label" >Password</label>
                         <input type="password" className="form-control" id="password" placeholder="Enter your password" onChange={handleChange} value={data.password} />
                     </div>
-                    <button className="btn btn-primary mt-3">Submit</button>
+                    <button className="btn btn-primary mt-3">SignIn</button><br/>
+                    <a class="btn btn-outline- mt-3" type="button" href="/create" >Create new Account</a>
 
                 </form>
             </div>
