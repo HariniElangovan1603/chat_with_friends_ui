@@ -25,7 +25,13 @@ export default function Navbar() {
     <>
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="javascript:void(0)">Chat</a>
+    <Link className="navbar-brand d-flex align-items-center gap-1" to="/" id="chat-logo">
+  <span className="logo-part logo-c">C</span>
+  <span className="logo-part logo-h">h</span>
+  <span className="logo-part logo-a">a</span>
+  <span className="logo-part logo-t">t</span>
+</Link>
+
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
