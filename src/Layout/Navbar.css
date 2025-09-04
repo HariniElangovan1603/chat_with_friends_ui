@@ -1,0 +1,24 @@
+#chat-logo .logo-part {
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+}
+
+.logo-c {
+  background-color: #0d6efd; /* Bootstrap primary */
+}
+
+.logo-h {
+  background-color: #6610f2; /* Bootstrap purple */
+}
+
+.logo-a {
+  background-color: #198754; /* Bootstrap success */
+}
+
+.logo-t {
+  background-color: #fd7e14; /* Bootstrap orange */
+}
