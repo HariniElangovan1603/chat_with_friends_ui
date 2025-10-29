@@ -1,0 +1,26 @@
+.chat-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* left = user list, right = chat */
+    height: 100vh;
+    width: 100%;
+}
+
+/* Hide user list on small screens */
+@media screen and (max-width: 750px) {
+    .res {
+        display: none;
+    }
+}
+
+/* Hide chat area on medium screens if needed */
+@media screen and (max-width: 1600px) {
+    .no {
+        display: none;
+    }
+}
+
+/* Optional: make chat messages scrollable */
+.chat-list {
+    max-height: 80vh;
+    overflow-y: auto;
+}
