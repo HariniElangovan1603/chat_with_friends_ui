@@ -16,7 +16,7 @@ export default function SignIn(){
        let res = await axios.post(`${apiUrl}/users/signin`, data)
         console.log(res.data)
         if( res.status === 200){
-            // console.log("hi")
+            console.log("hi")
             localStorage.setItem("user",JSON.stringify(res.data.user))
             route("/list")
         }

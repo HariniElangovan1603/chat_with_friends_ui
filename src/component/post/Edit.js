@@ -45,22 +45,17 @@ export default function Edit() {
             <div className="container mt-5">
                 <h2>Edit a Post.</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="mt-3">
-                        <label htmlFor="userid" className="form-label">Userid</label>
-                        <input type="text" className="form-control" id="userid" onChange={handleChange}  value={editpost?.userid || ""} />
-
-                    </div>
 
                     <div className="mt-3">
-                           <input type="radio" id="uploadtype" className="mx-2" name="uploadtype" value="image" onChange={handleChange}  />
+                        <input type="radio" id="uploadtype" className="mx-2" name="uploadtype" value="image" onChange={handleChange} />
                         <label htmlFor="image">IMAGE</label>
 
-                        <input type="radio" className="mx-2" id="uploadtype" name="uploadtype" value="video" onChange={handleChange}   />
+                        <input type="radio" className="mx-2" id="uploadtype" name="uploadtype" value="video" onChange={handleChange} />
                         <label htmlFor="video">VIDEO</label>
-                        
-                   
-                    <input type="text" className="form-control mt-2" id="upload" onChange={handleChange} value={editpost.upload} />
-                    
+
+
+                        <input type="text" className="form-control mt-2" id="upload" onChange={handleChange} value={editpost.upload} />
+
                     </div>
 
                     <div className="mt-3">

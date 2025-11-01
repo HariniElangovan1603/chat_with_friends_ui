@@ -7,6 +7,15 @@
   display: inline-block;
 }
 
+.nav-item{
+  font-weight: 700;
+  font-size: 18px;
+
+}
+.dropdown-menu{
+  background-color: rgb(245, 244, 244);
+}
+
 .logo-c {
   background-color: #0d6efd; /* Bootstrap primary */
 }

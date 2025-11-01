@@ -20,7 +20,7 @@ const Card = ({ post, onDelete }) => {
 
         // Expect backend: { totalLikes, users }
         setLikes(res.data.totalLikes);
-        
+
         const user = JSON.parse(localStorage.getItem("user"));
         if (user && res.data.users.includes(user._id)) {
           setLiked(true);
@@ -44,11 +44,11 @@ const Card = ({ post, onDelete }) => {
     }
 
     try {
-      const res = await axios.post(`${apiUrl}/like/${post._id}`, { user },likes);
+      const res = await axios.post(`${apiUrl}/like/${post._id}`, { user }, likes);
 
       // update button color based on backend response
       setLiked(res.data.status === "liked");
-       console.log(res.data)
+      console.log(res.data)
       // refresh like count
       const countRes = await axios.get(`${apiUrl}/like/${post._id}`);
       setLikes(countRes.data.totalLikes);
@@ -59,12 +59,12 @@ const Card = ({ post, onDelete }) => {
 
   // Add comment locally
   const handleAddComment = () => {
-     const user = JSON.parse(localStorage.getItem("user"));
-if (commentText.trim() === '') return;
-   if (commentText.trim() === '') return;
-      setComments(prev => [...prev,{user:user.name,text:commentText} ]);
-      console.log(`💬 ${user.name} commented: ${commentText}`)
-      setCommentText('');
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (commentText.trim() === '') return;
+    if (commentText.trim() === '') return;
+    setComments(prev => [...prev, { user: user.name, text: commentText }]);
+    console.log(`💬 ${user.name} commented: ${commentText}`)
+    setCommentText('');
   };
 
   const handleCommentClick = () => {
@@ -97,13 +97,13 @@ if (commentText.trim() === '') return;
             style={{ cursor: 'pointer' }}
             onClick={() => setMenuOpen(!menuOpen)}
           />
-          {menuOpen && (
+          {/* {menuOpen && (
             <div className="menu-dropdown">
               <button className="dropdown-item" onClick={handleDelete}>
                 Delete
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
@@ -152,28 +152,43 @@ if (commentText.trim() === '') return;
 
         {/* Comment input */}
         <div className="d-flex gap-2 mb-2">
-          <input
+          <textarea
             ref={inputRef}
-            type="text"
             className="form-control"
             placeholder="Add a comment..."
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
-          />
+            rows={3}
+            style={{
+              overflowY: "auto",
+              maxHeight: "30px",
+              resize: "none"
+            }}
+          ></textarea>
+
           <button className="btn btn-primary" onClick={handleAddComment}>
             Send
           </button>
         </div>
 
+
         {/* Comments list */}
-        <div className="comments-list">
+        <div
+          className="comments-list"
+          style={{
+            maxHeight: "200px",  // adjust height as needed
+            overflowY: "auto",   // enables vertical scrollbar
+            paddingRight: "8px"  // prevent scrollbar overlap
+          }}
+        >
           {comments.map((c, index) => (
-            <div key={index} className="border-top pt-1">
-           <strong>{c.user}</strong><br />{c.text}   
-          
+            <div key={index} className="border-top pt-1 pb-1">
+              <strong>{c.user}</strong><br />
+              {c.text}
             </div>
           ))}
         </div>
+
 
         {/* Post time */}
         <span className="post-time" style={{ fontSize: '0.9rem', color: 'gray' }}>

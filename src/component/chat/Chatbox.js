@@ -5,14 +5,18 @@ import apiUrl from "../../apiConfig";
 import axios from "axios";
 
 export default function Chatbox() {
+  
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("user")) || {};
-
+console.log(users);
   // Fetch users except current user
   async function getUsers() {
     try {
+      console.log("res")
       const res = await axios.get(`${apiUrl}/users`);
+      console.log("resdD")
+      console.log(res)
       const filtered = res.data.filter(
         (user) => user._id !== (currentUser._id || currentUser.userid)
       );
@@ -31,7 +35,7 @@ export default function Chatbox() {
 
   useEffect(() => {
     getUsers();
-  }, [getUsers]);
+  }, []);
 
   return (
     <div className="container mt-5">

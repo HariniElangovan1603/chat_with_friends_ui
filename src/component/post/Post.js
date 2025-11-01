@@ -14,6 +14,7 @@ export default function Post() {
         try {
             let res = await axios.get(`${apiUrl}/users`, user);
             setuser(res.data);
+
         } catch (error) {
             console.error("Error fetching users:", error);
         }
@@ -28,7 +29,9 @@ export default function Post() {
         e.preventDefault();
 
 
-        const postData = { ...data, time: new Date().toISOString() };
+        const postData = { ...data, time: new Date().toISOString(),
+            
+         };
 
         console.log("Submitting post:", postData);
 
@@ -38,16 +41,20 @@ export default function Post() {
             console.log("Post created:", res.data);
 
             if (res.status === 200 && res.data.user) {
-                localStorage.setItem("user", JSON.stringify(res.data.user));
+                localStorage.setItem("user", JSON.stringify(res.data.user)
+                );
+                console.log(user)
+                console.log(res.data.user)
             }
             route("/show");
 
         } catch (error) {
             console.error("Error creating post:", error);
         }
+        
     }
-
-    useEffect(() => {   
+  
+    useEffect(() => {
         getuser();
     }, [getuser]);
 
@@ -57,22 +64,22 @@ export default function Post() {
             <div className="container mt-5">
                 <h2>Create a New Post.</h2>
                 <form onSubmit={handleSubmit}>
-
-
                     <div className="mt-3">
-                        <label htmlFor="userid" className="form-label">Userid</label>
                         <select id="userid" className="form-control" onChange={handleChange} value={data.userid || ""}>
                             <option value="">Select a user</option>
                             {user.map((val) =>
                                 <option key={val._id} value={val._id}>{val.name}</option>)}
                         </select>
                     </div>
+                    
+
+
 
                     <div className="mt-3">
                         <input type="radio" id="uploadtype" className="mx-2" name="uploadtype" value="image"
                             onChange={handleChange} checked={data.uploadtype === "image"} />
                         <label htmlFor="image">IMAGE</label>
-
+                     
                         <input type="radio" className="mx-2" id="uploadtype" name="uploadtype" value="video"
                             onChange={handleChange} checked={data.uploadtype === "video"} />
                         <label htmlFor="video">VIDEO</label>

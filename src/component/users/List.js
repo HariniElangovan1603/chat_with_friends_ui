@@ -21,6 +21,7 @@ export default function List() {
 
     useEffect(() => {
         let user = localStorage.getItem("user");
+        console.log(user)
         if (user) {
             getcollege();
         }
@@ -50,7 +51,7 @@ export default function List() {
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Email</th>
-                            <th>Action</th>
+                            <th>Image</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,10 +60,7 @@ export default function List() {
                                 <td> <p>{val.name}</p></td>
                                 <td><p>{val.phone}</p></td>
                                 <td><p>{val.email}</p></td>
-                                <td className='d-flex'><button className='btn btn-danger' onClick={() => handleDelete(val._id)}><i class="fa-solid fa-trash"></i></button>
-                                    <button className='btn btn-primary' onClick={() => handleUpdate(val._id)}>
-                                   <i class="fa-solid fa-pen"></i></button>
-                                </td>
+                                <td><p>{val.image}</p></td>
 
                             </tr>
                         )}

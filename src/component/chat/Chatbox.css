@@ -8,7 +8,7 @@
 /* Hide user list on small screens */
 @media screen and (max-width: 750px) {
     .res {
-        display: none;
+        display: block;
     }
 }
 
